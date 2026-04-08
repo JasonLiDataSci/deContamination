@@ -3,7 +3,7 @@
 #include <fstream>
 #include <math.h> // pow, sqrt, lgamma
 #include <cmath> //
-#include <unistd.h> // getopt
+// #include <unistd.h> // getopt
 #include <stdlib.h>
 #include <string>
 #include <stdio.h>
