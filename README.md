@@ -57,12 +57,12 @@ def main():
         "n_record": 3000,
         "seed": 123,
         "output_list": "./output/",
-        "data_name": "../../dcuda/data/Y_obs.txt",
-        "nei_name": "../../dcuda/data/nei_list.txt",
-        "dist_name": "../../dcuda/data/nei_dist.txt",
-        "label_name": "../../dcuda/data/Y_label.txt",
-        "cell_size_name": "../../dcuda/data/cell_size.txt",
-        "MB_dir": "../../dcuda/data/MB/",
+        "data_name": "./data/Y_obs.txt",
+        "nei_name": "./data/nei_list.txt",
+        "dist_name": "./data/nei_dist.txt",
+        "label_name": "./data/Y_label.txt",
+        "cell_size_name": "./data/cell_size.txt",
+        "MB_dir": "./data/MB/",
     }
 
     print("Start running...")
