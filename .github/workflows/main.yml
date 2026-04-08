@@ -18,7 +18,7 @@ jobs:
 
       - run: python -m cibuildwheel --output-dir wheelhouse
         env:
-          CIBW_BUILD: cp310-*
+          CIBW_BUILD: cp310-win_amd64
 
       - uses: actions/upload-artifact@v4
         with:
