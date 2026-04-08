@@ -29,7 +29,7 @@ A minimal test script is shown below.
 # test_decontamination.py
 from pathlib import Path
 import traceback
-import deContamination
+import deContamination as dc
 
 
 def main():
@@ -39,13 +39,6 @@ def main():
     print("Loaded module from:", deContamination.__file__)
     print("Available attributes:")
     print([x for x in dir(deContamination) if not x.startswith("_")])
-
-    if hasattr(deContamination, "run"):
-        run = deContamination.run
-    elif hasattr(deContamination, "run_contamination"):
-        run = deContamination.run_contamination
-    else:
-        raise AttributeError("No callable function found in deContamination.")
 
     params = {
         "G": 300,
@@ -67,7 +60,7 @@ def main():
 
     print("Start running...")
     try:
-        ret = run(
+        ret = dc.run(
             params["G"],
             params["K"],
             params["N_nei"],
