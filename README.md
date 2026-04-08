@@ -33,66 +33,56 @@ import deContamination
 
 
 def main():
-    # 1) Create output directory
     out_dir = Path("./output/")
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # 2) Check exported symbols
     print("Loaded module from:", deContamination.__file__)
     print("Available attributes:")
     print([x for x in dir(deContamination) if not x.startswith("_")])
 
-    # 3) Select the bound function name
     if hasattr(deContamination, "run"):
-        func = deContamination.run
+        run = deContamination.run
     elif hasattr(deContamination, "run_contamination"):
-        func = deContamination.run_contamination
+        run = deContamination.run_contamination
     else:
-        raise AttributeError(
-            "No callable function found. Check the function name exported by pybind11."
-        )
+        raise AttributeError("No callable function found in deContamination.")
 
-    # 4) Parameters consistent with the Makefile
-    # --- numerical parameters ---
-    G = 300          # -g
-    K = 3            # -k
-    B = 49           # -b
-    N = 10000        # -n
-    N_MB = 50        # -a
-    N_tail = 454     # -c
-    n_record = 3000  # -t
-    seed = 123       # -s
-
-    # --- file paths ---
-    output_dir = str(out_dir)
-    data_name = "../dcuda/data/Y_obs.txt"          # -d
-    nei_name = "../dcuda/data/nei_list.txt"        # -e
-    dist_name = "../dcuda/data/nei_dist.txt"       # -q
-    label_name = "../dcuda/data/Y_label.txt"       # -l
-    cell_size_name = "../dcuda/data/cell_size.txt"  # -f
-    MB_dir = "../dcuda/data/MB/"                   # -h
-    true_z_name = "../dcuda/data/Z_true.txt"       # -z
+    params = {
+        "G": 300,
+        "K": 3,
+        "N_nei": 49,
+        "N": 10000,
+        "N_MB": 50,
+        "N_tail": 454,
+        "n_record": 3000,
+        "seed": 123,
+        "output_list": "./output/",
+        "data_name": "../../dcuda/data/Y_obs.txt",
+        "nei_name": "../../dcuda/data/nei_list.txt",
+        "dist_name": "../../dcuda/data/nei_dist.txt",
+        "label_name": "../../dcuda/data/Y_label.txt",
+        "cell_size_name": "../../dcuda/data/cell_size.txt",
+        "MB_dir": "../../dcuda/data/MB/",
+    }
 
     print("Start running...")
     try:
-        # 5) Call the bound function
-        # Keep the argument order exactly the same as in the C++ binding.
-        ret = func(
-            300,
-            3,
-            49,
-            10000,
-            50,
-            454,
-            3000,
-            123,
-            "./output/",
-            "../../dcuda/data/Y_obs.txt",
-            "../../dcuda/data/nei_list.txt",
-            "../../dcuda/data/nei_dist.txt",
-            "../../dcuda/data/Y_label.txt",
-            "../../dcuda/data/cell_size.txt",
-            "../../dcuda/data/MB/"
+        ret = run(
+            params["G"],
+            params["K"],
+            params["N_nei"],
+            params["N"],
+            params["N_MB"],
+            params["N_tail"],
+            params["n_record"],
+            params["seed"],
+            params["output_list"],
+            params["data_name"],
+            params["nei_name"],
+            params["dist_name"],
+            params["label_name"],
+            params["cell_size_name"],
+            params["MB_dir"],
         )
         print("Finished. Return value:", ret)
     except Exception:
