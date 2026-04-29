@@ -1,0 +1,17 @@
+site_name: My Docs
+site_name: deContamination  # 网站标题
+theme:
+  name: material      # 选用 Material 主题
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate   # 目录在侧边栏
+  palette:
+    primary: deep blue # 主色调（可以换 blue, green 等）
+    accent: indigo       # 强调色
+
+markdown_extensions:
+  - pymdownx.highlight # 代码高亮
+  - pymdownx.superfences
+  - admonition         # 提示框
+  - attr_list
