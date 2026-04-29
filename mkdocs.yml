@@ -1,20 +1,49 @@
 site_name: My Docs
-site_name: deContamination  # 网站标题
-theme:
-  name: material      # 选用 Material 主题
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - toc.integrate   # 目录在侧边栏
-  palette:
-    primary: deep blue # 主色调（可以换 blue, green 等）
-    accent: indigo       # 强调色
-
-markdown_extensions:
-  - pymdownx.highlight # 代码高亮
-  - pymdownx.superfences
-  - admonition         # 提示框
-  - attr_list
+site_name: DeLeakage
 
 extra:
   no_mkdocs_2_warning: true
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  palette:
+    primary: indigo
+    accent: blue
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs  # 顶部导航标签
+    - navigation.sections  # 侧边栏分组
+    - toc.integrate  # 目录整合到侧边栏
+    - header.autohide  # 滚动时自动隐藏顶部栏
+    - content.code.copy
+
+# 右上角 GitHub 仓库链接
+repo_url: https://github.com/JasonLiDataSci/deContamination
+repo_name: deContamination
+
+# 顶部导航栏
+nav:
+  - Home: index.md
+  - Install: install.md
+  - Quick Start: quickstart.md
+  - GPU Implementation: gpu_tutorial.md
+  - FAQ: faq.md
+  - Citation: citation.md
+
+# Markdown 扩展
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - attr_list
+  - md_in_html
+
