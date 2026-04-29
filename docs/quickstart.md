@@ -95,36 +95,16 @@ python3 test_decontamination.py
 
 
 ## 4. Visualize Results
-Create `plot_results.py` to compare true vs. decontaminated data:
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-
-# Load data
-Y_true = np.loadtxt("./data/Y_true.txt", dtype=int)
-Y_obs = np.loadtxt("./data/Y_obs.txt", dtype=int)
-# Assume DeLeakage outputs Y_pred.txt in ./output/ (adjust filename if needed)
-Y_pred = np.loadtxt("./output/Y_pred.txt", dtype=int)
-
-# Plot first 100 cells of gene 0
-gene_idx = 0
-cell_range = slice(0, 100)
-
-plt.figure(figsize=(12, 4))
-plt.plot(Y_true[gene_idx, cell_range], label="True", alpha=0.7)
-plt.plot(Y_obs[gene_idx, cell_range], label="Observed (Contaminated)", alpha=0.7)
-plt.plot(Y_pred[gene_idx, cell_range], label="Decontaminated", alpha=0.7)
-plt.xlabel("Cell")
-plt.ylabel("Expression")
-plt.title(f"Gene {gene_idx} Expression (First 100 Cells)")
-plt.legend()
-plt.savefig("./output/result_plot.png")
-print("Plot saved to ./output/result_plot.png")
-```
+Using `plot_results.py` to compare true, raw vs. decontaminated data:
 
 Run it:
 ```bash
-python3 plot_results.py
+python .\scripts\plot_results.py --gex .\True\Y_true.txt --gene .\dataDir\Gene.csv --cell .\dataDir\Cell_meta.csv --marker .\dataDir\marker.json --output .\eval_True
+
+python .\scripts\plot_results.py --gex .\dataDir\Count.mtx --gene .\dataDir\Gene.csv --cell .\dataDir\Cell_meta.csv --marker .\dataDir\marker.json --output .\eval_Raw
+
+python .\scripts\plot_results.py --gex .\our\decon_fact_vol.txt --gene .\dataDir\Gene.csv --cell .\dataDir\Cell_meta.csv --marker .\dataDir\marker.json --output .\eval_our
+
 ```
 
 
