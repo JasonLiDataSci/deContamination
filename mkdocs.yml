@@ -15,3 +15,6 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition         # 提示框
   - attr_list
+
+extra:
+  no_mkdocs_2_warning: true
