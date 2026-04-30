@@ -33,7 +33,6 @@ nav:
   - Install: install.md
   - Quick Start: quickstart.md
   - GPU Implementation: gpu_tutorial.md
-  - FAQ: faq.md
   - Citation: citation.md
 
 # Markdown 扩展
